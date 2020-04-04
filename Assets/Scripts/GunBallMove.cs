@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GunBallMove : MonoBehaviour
 {
+    public float speed = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,7 @@ public class GunBallMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position += Vector3.forward;
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(-2.537f, 0.265f, -6.93f), step);
     }
 }

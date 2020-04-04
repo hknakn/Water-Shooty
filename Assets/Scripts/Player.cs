@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public GameObject gun;
     public GameObject gunBall;
     public GameObject enemy;
+    public int waitSecs = 0;
+    private bool animated;
 
     // Start is called before the first frame update
     void Start()
@@ -19,22 +21,29 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             anim.Play("TurnAndShoot");
-            StartCoroutine(Wait());
-            Instantiate(gunBall, new Vector3(-3.34f, 0.35f, -6.44f), Quaternion.identity);
+            animated = true;
         }
-    }
 
-    IEnumerator Wait()
-    {
-        var Seconds = 30;
-        Debug.Log("Waiting", gameObject);
-        Debug.Log("ACTUALLY WAITING", gameObject);
-        yield return new WaitForSeconds(Seconds);
-        Debug.Log("Done Waiting", gameObject);
-        Debug.Log("ACTUALLY WAITING DONE", gameObject);
-        Debug.Log("Done wit stuff", gameObject);
+
+        if (animated)
+        {
+            waitSecs++;
+
+            if (waitSecs == 20)
+            {
+                waitSecs = 0;
+                anim.speed = 0;
+                Instantiate(gunBall, new Vector3(-3.34f, 0.35f, -6.44f), Quaternion.identity);
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            anim.speed = 2;
+            animated = false;
+        }
     }
 }
