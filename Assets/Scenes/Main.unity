@@ -198,7 +198,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 2920daf05cc00744987b68f95c12e8dd, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -974,6 +974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 162202245}
   - component: {fileID: 155053415}
+  - component: {fileID: 162307750}
   m_Layer: 0
   m_Name: Enemy_1
   m_TagString: Untagged
@@ -981,6 +982,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &162307750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162307749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827a728935013ec4e928fbd817e15586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &162307751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,6 +2052,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 496350, guid: 50673ce029549f04d8a30a3886523aad,
     type: 3}
   m_PrefabInstance: {fileID: 1035348145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1815588558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 13d314ce9af8b604d86e98fa9c4d3660,
+    type: 3}
+  m_PrefabInstance: {fileID: 36513719}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &2067201167
 Animator:
@@ -3195,7 +3214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8665f2f511920ce43917e62dcb1fd801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 2067201167}
+  gun: {fileID: 1815588558}
+  gunBall: {fileID: 7076829205352542668, guid: f5eed90a830733849821b08e35c5d276, type: 3}
+  enemy: {fileID: 0}
 --- !u!1 &2074578637
 GameObject:
   m_ObjectHideFlags: 0

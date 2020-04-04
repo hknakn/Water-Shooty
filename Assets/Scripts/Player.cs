@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Animator anim;
+    private Animator anim;
+
+    public GameObject gun;
+    public GameObject gunBall;
+    public GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -16,8 +21,20 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var a = anim.runtimeAnimatorController.animationClips;
             anim.Play("TurnAndShoot");
+            StartCoroutine(Wait());
+            Instantiate(gunBall, new Vector3(-3.34f, 0.35f, -6.44f), Quaternion.identity);
         }
+    }
+
+    IEnumerator Wait()
+    {
+        var Seconds = 30;
+        Debug.Log("Waiting", gameObject);
+        Debug.Log("ACTUALLY WAITING", gameObject);
+        yield return new WaitForSeconds(Seconds);
+        Debug.Log("Done Waiting", gameObject);
+        Debug.Log("ACTUALLY WAITING DONE", gameObject);
+        Debug.Log("Done wit stuff", gameObject);
     }
 }
