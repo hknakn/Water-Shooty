@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8234899169336731298}
   m_Layer: 0
   m_Name: GunBall
-  m_TagString: Untagged
+  m_TagString: GunBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,11 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3.5
-  cubeSize: 0.01
-  cubesInRow: 5
-  explosionForce: 5
-  explosionRadius: 20
-  explosionUpward: 1
 --- !u!54 &8234899169336731298
 Rigidbody:
   m_ObjectHideFlags: 0

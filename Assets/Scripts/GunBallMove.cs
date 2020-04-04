@@ -9,6 +9,7 @@ public class GunBallMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -17,4 +18,13 @@ public class GunBallMove : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(-2.537f, 0.265f, -6.93f), step);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
