@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunBallMove : MonoBehaviour
+public class PlayerGunBallMove : MonoBehaviour
 {
     public float speed = 1f;
 
@@ -26,5 +26,4 @@ public class GunBallMove : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

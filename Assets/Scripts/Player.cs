@@ -8,8 +8,13 @@ public class Player : MonoBehaviour
 
     public GameObject gun;
     public GameObject gunBall;
-    public GameObject enemy;
+
     public int waitSecs = 0;
+    public static bool canDie = false;
+    public float walkSpeed = 0.4f;
+    private bool rotatedForWalk = false;
+
+    // Cool Down
     public float FireRate = 0.4f;
     private float NextFire;
 
@@ -22,24 +27,42 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (!Enemy.isDead)
         {
-            anim.Play("TurnAndShoot");
-            
-            waitSecs++;
-
-            if (waitSecs > 20 && Time.time > NextFire)
+            if (Input.GetMouseButton(0))
             {
-                NextFire = Time.time + FireRate;
-                anim.speed = 0;
-                Instantiate(gunBall, new Vector3(-3.34f, 0.35f, -6.44f), Quaternion.identity);
+                anim.Play("TurnAndShoot");
+
+                waitSecs++;
+
+                if (waitSecs > 20 && Time.time > NextFire)
+                {
+                    NextFire = Time.time + FireRate;
+                    anim.speed = 0;
+                    Instantiate(gunBall, new Vector3(-3.34f, 0.35f, -6.44f), Quaternion.identity);
+                }
+                canDie = true;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                anim.speed = 2;
+                waitSecs = 0;
+                canDie = false;
             }
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Enemy.isDead)
         {
-            anim.speed = 2;
-            waitSecs = 0;
-            //animated = false;
+            anim.Play("Walking");
+            float step = walkSpeed * Time.deltaTime;
+
+            // We need to rotate one time. Check for that
+            if (!rotatedForWalk)
+            {
+                rotatedForWalk = true;
+                transform.Rotate(0, -180, 0);
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(-2.533f, 0.184f, -6.931f), step);
         }
     }
 }
