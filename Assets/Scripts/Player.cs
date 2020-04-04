@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     public GameObject gunBall;
     public GameObject enemy;
     public int waitSecs = 0;
-    private bool animated;
+    public float FireRate = 0.4f;
+    private float NextFire;
 
     // Start is called before the first frame update
     void Start()
@@ -24,26 +25,21 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             anim.Play("TurnAndShoot");
-            animated = true;
-        }
-
-
-        if (animated)
-        {
+            
             waitSecs++;
 
-            if (waitSecs == 20)
+            if (waitSecs > 20 && Time.time > NextFire)
             {
-                waitSecs = 0;
+                NextFire = Time.time + FireRate;
                 anim.speed = 0;
                 Instantiate(gunBall, new Vector3(-3.34f, 0.35f, -6.44f), Quaternion.identity);
             }
         }
-
-        if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0))
         {
             anim.speed = 2;
-            animated = false;
+            waitSecs = 0;
+            //animated = false;
         }
     }
 }
